@@ -18,6 +18,6 @@ export class SalaryService {
   }
 
   getSalaryCalculationsHistory(recordsAmmount: number = 10):Observable<SalaryModel[]>{
-    return this.http.get<SalaryModel[]>(`${this.baseUrl}/Tax/history/?amount=${recordsAmmount}`)
+    return this.http.get<SalaryModel[]>(`${this.baseUrl}/Tax/history?amount=${recordsAmmount}`)
   }
 }
