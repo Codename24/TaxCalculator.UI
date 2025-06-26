@@ -1,0 +1,42 @@
+<mat-card>
+  <!-- Card Title -->
+  <mat-card-title>Salary Calculations History</mat-card-title>
+
+  <!-- Card Content -->
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="start stretch">
+
+      <!-- Table -->
+      <div *ngIf="calculationsHistory !== null && calculationsHistory.length > 0" fxFlex="100">
+        <table mat-table class="history-table">
+          <thead>
+            <tr>
+              <th>Gross Annual Salary</th>
+              <th>Gross Monthly Salary</th>
+              <th>Net Annual Salary</th>
+              <th>Net Monthly Salary</th>
+              <th>Annual Tax Paid</th>
+              <th>Monthly Tax Paid</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of calculationsHistory">
+              <td>{{ record.grossAnnualSalary | currency: 'GBP' }}</td>
+              <td>{{ record.grossMonthlySalary | currency: 'GBP' }}</td>
+              <td>{{ record.netAnnualSalary | currency: 'GBP' }}</td>
+              <td>{{ record.netMonthlySalary | currency: 'GBP' }}</td>
+              <td>{{ record.totalTax | currency: 'GBP' }}</td>
+              <td>{{ record.totalMonthlyTaxes | currency : 'GBP' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No History Message -->
+      <div *ngIf="calculationsHistory === null || calculationsHistory.length === 0" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+        <p>No history available.</p>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>

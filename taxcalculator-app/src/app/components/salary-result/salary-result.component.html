@@ -1,0 +1,35 @@
+<mat-card *ngIf="calculationResult; else noResult">
+  <!-- Card Title -->
+  <mat-card-title>Calculation Result</mat-card-title>
+
+  <!-- Card Content -->
+  <mat-card-content>
+    <!-- Container for results -->
+    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="16px" fxLayoutWrap>
+      <!-- Individual Result Items -->
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Gross Annual Salary:</strong> {{ calculationResult.grossAnnualSalary | currency: 'GBP' }}</p>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Gross Monthly Salary:</strong> {{ calculationResult.grossMonthlySalary | currency: 'GBP' }}</p>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Net Annual Salary:</strong> {{ calculationResult.netAnnualSalary | currency: 'GBP' }}</p>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Net Monthly Salary:</strong> {{ calculationResult.netMonthlySalary | currency: 'GBP' }}</p>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Annual Tax Paid:</strong> {{ calculationResult.totalTax | currency : 'GBP' }}</p>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+        <p><strong>Monthly Tax Paid:</strong> {{ calculationResult.totalMonthlyTaxes | currency: 'GBP' }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- No Result Template -->
+<ng-template #noResult>
+  <p>No calculation result. Please enter a salary and calculate.</p>
+</ng-template>
