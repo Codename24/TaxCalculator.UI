@@ -3,7 +3,6 @@
   <mat-card-content>
     <form [formGroup]="salaryForm">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayout.xs="column" fxLayoutGap="16px">
-        <!-- Input Field -->
         <mat-form-field appearance="fill" fxFlex="70" fxFlex.xs="100" class="input-field">
           <mat-label>Gross Annual Salary</mat-label>
           <input matInput formControlName="grossSalary" type="number" />
@@ -15,7 +14,6 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Button -->
         <div fxFlex="30" fxFlex.xs="100" class="button-container">
           <button
             mat-raised-button
@@ -30,7 +28,6 @@
       </div>
     </form>
 
-    <!-- Progress Bar -->
     <mat-progress-bar *ngIf="isProcessing" mode="indeterminate"></mat-progress-bar>
   </mat-card-content>
 </mat-card>

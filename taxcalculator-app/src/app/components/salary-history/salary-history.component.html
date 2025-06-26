@@ -1,12 +1,7 @@
 <mat-card>
-  <!-- Card Title -->
   <mat-card-title>Salary Calculations History</mat-card-title>
-
-  <!-- Card Content -->
   <mat-card-content>
     <div fxLayout="column" fxLayoutAlign="start stretch">
-
-      <!-- Table -->
       <div *ngIf="calculationsHistory !== null && calculationsHistory.length > 0" fxFlex="100">
         <table mat-table class="history-table">
           <thead>
@@ -31,12 +26,9 @@
           </tbody>
         </table>
       </div>
-
-      <!-- No History Message -->
       <div *ngIf="calculationsHistory === null || calculationsHistory.length === 0" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
         <p>No history available.</p>
       </div>
-
     </div>
   </mat-card-content>
 </mat-card>

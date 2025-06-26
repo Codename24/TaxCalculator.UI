@@ -27,7 +27,7 @@ describe('AppComponent', () => {
         SalaryInputComponent,
       ],
       providers: [
-        { provide: SalaryService, useClass: MockSalaryService }, // Use the mock service
+        { provide: SalaryService, useClass: MockSalaryService },
       ],
       imports: [
         MatToolbarModule,
@@ -42,7 +42,7 @@ describe('AppComponent', () => {
     // Create the component fixture
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    mockSalaryService = TestBed.inject(SalaryService); // Inject the mock service
+    mockSalaryService = TestBed.inject(SalaryService);
   });
 
   it('should create the component', () => {

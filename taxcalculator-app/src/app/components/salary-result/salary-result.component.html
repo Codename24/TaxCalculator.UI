@@ -1,12 +1,7 @@
 <mat-card *ngIf="calculationResult; else noResult">
-  <!-- Card Title -->
   <mat-card-title>Calculation Result</mat-card-title>
-
-  <!-- Card Content -->
   <mat-card-content>
-    <!-- Container for results -->
     <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px" fxLayoutWrap>
-      <!-- Individual Result Items -->
       <div fxFlex="50" fxFlex.xs="100">
         <p><strong>Gross Annual Salary:</strong> {{ calculationResult.grossAnnualSalary | currency: 'GBP' }}</p>
       </div>
@@ -29,7 +24,6 @@
   </mat-card-content>
 </mat-card>
 
-<!-- No Result Template -->
 <ng-template #noResult>
   <p>No calculation result. Please enter a salary and calculate.</p>
 </ng-template>
