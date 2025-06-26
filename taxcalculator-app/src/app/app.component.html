@@ -1,25 +1,23 @@
 <mat-toolbar color="primary">
   Salary Calculator
 </mat-toolbar>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px" style="padding: 16px;">
-  <!-- Salary Input -->
-  <div fxFlex="50%" fxFlex.xs="100%">
-    <mat-card>
-      <app-salary-input (calculate)="onCalculate($event)"></app-salary-input>
-    </mat-card>
-  </div>
-
-  <!-- Calculation Result -->
-  <div fxFlex="50%" fxFlex.xs="100%">
-    <mat-card>
-      <app-salary-result [calculationResult]="calculationResult"></app-salary-result>
-    </mat-card>
-  </div>
-</div>
-
 <div fxLayout="row" fxLayoutGap="16px" style="padding: 16px;">
-  <!-- Salary History -->
-  <div fxFlex="100%">
+  <!-- Salary Input and Calculation Result Column -->
+  <div fxFlex="50%" fxFlex.xs="100%">
+    <div fxLayout="column" fxLayoutGap="16px">
+      <!-- Salary Input -->
+      <mat-card>
+        <app-salary-input (calculate)="onCalculate($event)"></app-salary-input>
+      </mat-card>
+      <!-- Calculation Result -->
+      <mat-card>
+        <app-salary-result [calculationResult]="calculationResult"></app-salary-result>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Salary History Column -->
+  <div fxFlex="50%" fxFlex.xs="100%">
     <mat-card>
       <app-salary-history [calculationsHistory]="calculationHistory"></app-salary-history>
     </mat-card>

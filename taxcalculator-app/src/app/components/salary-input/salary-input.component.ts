@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-salary-input',
@@ -14,7 +13,7 @@ export class SalaryInputComponent {
 
   constructor(private fb: FormBuilder) {
     this.salaryForm = this.fb.group({
-      grossSalary: [null, [Validators.required, Validators.min(0)]],
+      grossSalary: [null, [Validators.required, Validators.min(1)]],
     });
   }
 
