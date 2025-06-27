@@ -12,13 +12,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let mockSalaryService: SalaryService;
+  let mockSnackBar: jasmine.SpyObj<MatSnackBar>
 
   beforeEach(async () => {
+    mockSnackBar = jasmine.createSpyObj('MatSnackBar', ['open']);
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent,
@@ -28,6 +31,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: SalaryService, useClass: MockSalaryService },
+        { provide: MatSnackBar, useValue: mockSnackBar },
       ],
       imports: [
         MatToolbarModule,
@@ -35,7 +39,8 @@ describe('AppComponent', () => {
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatSnackBarModule
       ],
     }).compileComponents();
 
@@ -69,15 +74,15 @@ describe('AppComponent', () => {
       spyOn(mockSalaryService, 'calculateNetSalary').and.returnValue(
         throwError('Calculation failed')
       );
-      spyOn(console, 'error');
-
+    
       component.onCalculate(15000);
 
       expect(component.isProcessing).toBeFalse();
       expect(component.calculationResult).toBeNull();
-      expect(console.error).toHaveBeenCalledWith(
-        'Failed to calculate salary:',
-        'Calculation failed'
+      expect(mockSnackBar.open).toHaveBeenCalledWith(
+        'Failed to process salary calculation. Please try again.',
+        'Close',
+        { duration: 5000, panelClass: 'error-snackbar' }
       );
     });
   });
@@ -110,14 +115,14 @@ describe('AppComponent', () => {
       spyOn(mockSalaryService, 'getSalaryCalculationsHistory').and.returnValue(
         throwError('History fetch failed')
       );
-      spyOn(console, 'error');
 
       component.fetchHistoryDetails();
 
       expect(component.calculationHistory).toEqual([]);
-      expect(console.error).toHaveBeenCalledWith(
-        'Failed to fetch salary history:',
-        'History fetch failed'
+      expect(mockSnackBar.open).toHaveBeenCalledWith(
+        'Failed to load salary history. Please refresh the page.',
+        'Close',
+        { duration: 5000, panelClass: 'error-snackbar' }
       );
     });
   });

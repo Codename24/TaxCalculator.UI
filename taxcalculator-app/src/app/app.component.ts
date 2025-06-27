@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SalaryModel } from './models/salary.model';
 import { SalaryService } from './services/salary.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ export class AppComponent {
   calculationHistory: SalaryModel[] = [];
   isProcessing = false;
 
-  constructor(private salaryService: SalaryService) {}
+  constructor(
+    private salaryService: SalaryService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.fetchHistoryDetails();
@@ -28,7 +32,7 @@ export class AppComponent {
         this.isProcessing = false;
       },
       error: (error) => {
-        console.error('Failed to calculate salary:', error);
+        this.notifyError('Failed to process salary calculation. Please try again.');
         this.isProcessing = false;
       },
     });
@@ -40,8 +44,15 @@ export class AppComponent {
         this.calculationHistory = history;
       },
       error: (error) => {
-        console.error('Failed to fetch salary history:', error);
+        this.notifyError('Failed to load salary history. Please refresh the page.');
       },
+    });
+  }
+
+  notifyError(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000, 
+      panelClass: 'error-snackbar',
     });
   }
 }
